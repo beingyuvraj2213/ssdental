@@ -2,6 +2,8 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  width: 100%;
+  overflow-x: clip;
   background: rgba(247, 251, 255, 0.7);
   backdrop-filter: blur(10px);
   transition: box-shadow 0.3s ease, background 0.3s ease, padding 0.3s ease;
@@ -39,7 +41,7 @@
 .navbar__brand-text {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3vw, 1.2rem);
   color: var(--color-primary-dark);
   display: flex;
   flex-direction: column;
@@ -49,7 +51,7 @@
 .navbar__brand-text small {
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 0.68rem;
+  font-size: clamp(0.6rem, 2vw, 0.68rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-accent-dark);
@@ -123,17 +125,19 @@
     position: fixed;
     top: 0;
     right: 0;
-    height: 100vh;
-    width: min(78vw, 320px);
+    height: 100dvh;
+    min-height: -webkit-fill-available;
+    width: min(86vw, 320px);
     background: var(--color-white);
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     gap: 6px;
-    padding: 32px;
+    padding: 24px 20px 32px;
     transform: translateX(100%);
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: -20px 0 40px rgba(18, 48, 73, 0.12);
+    overflow-y: auto;
   }
 
   .navbar__links--open {
@@ -148,5 +152,19 @@
     margin-left: 0;
     margin-top: 12px;
     width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .navbar__inner {
+    gap: 12px;
+  }
+
+  .navbar__brand {
+    min-width: 0;
+  }
+
+  .navbar__brand-text {
+    max-width: 150px;
   }
 }
