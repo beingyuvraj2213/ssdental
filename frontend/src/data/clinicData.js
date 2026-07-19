@@ -3,10 +3,10 @@
 // with your own image path (e.g. "/images/dr-sharma.jpg") when ready.
 
 export const owner = {
-  name: "Dr. Sameer Sinha",
+  name: "Dr. Sanjay Kumar",
   role: "Founder & Chief Dental Surgeon",
-  qualifications: "BDS, MDS (Oral & Maxillofacial Surgery)",
-  photo: "https://randomuser.me/api/portraits/men/32.jpg",
+  qualifications: "BDS, Dental Surgeon",
+  photo: "/images/sanjay.jpeg",
   bio:
     "With over 14 years of practice, Dr. Sanjay founded SS Dental Health on a simple idea: a trip to the dentist should feel calm, not scary. He leads the clinic's surgical and implant cases and personally trains every intern who joins the team.",
 };
@@ -16,7 +16,7 @@ export const doctors = [
     name: "Dr. Sanjay Kumar",
     role: "Founder & Chief Dental Surgeon",
     qualifications: "BDS, Dental Surgeon",
-    photo: "https://randomuser.me/api/portraits/men/32.jpg",
+    photo: "/images/sanjay.jpeg",
   },
   {
     name: "Dr. Priya Verma",
@@ -42,7 +42,7 @@ export const interns = [
   {
     name: "Shaina Sanjay",
     role: "Dental Intern",
-    photo: "https://randomuser.me/api/portraits/women/21.jpg",
+    photo: "/images/shaina.jpeg",
   },
   {
     name: "Vikram Nair",

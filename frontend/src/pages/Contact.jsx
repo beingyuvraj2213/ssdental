@@ -21,14 +21,14 @@ export default function Contact() {
               <span>📍</span>
               <div>
                 <strong>Visit Us</strong>
-                <p>123 MG Road, Near City Mall, Patna, Bihar 800001</p>
+                <p>2nd floor, Shasi Niketan, near Gyan Ganga, Kadamkuan, Patna, Bihar 800001</p>
               </div>
             </div>
             <div className="contact-card">
               <span>📞</span>
               <div>
                 <strong>Call Us</strong>
-                <p>+91 98765 43210</p>
+                <p>+91 93343 31889</p>
               </div>
             </div>
             <div className="contact-card">
@@ -50,7 +50,7 @@ export default function Contact() {
           <Reveal delay={1} className="contact-map">
             <iframe
               title="SS Dental Health location"
-              src="https://www.google.com/maps?q=Patna,Bihar&output=embed"
+              src="https://www.google.com/maps?q=25.607869,85.1487467&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
