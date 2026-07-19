@@ -8,14 +8,14 @@ export const owner = {
   qualifications: "BDS, MDS (Oral & Maxillofacial Surgery)",
   photo: "https://randomuser.me/api/portraits/men/32.jpg",
   bio:
-    "With over 14 years of practice, Dr. Sinha founded SS Dental Health on a simple idea: a trip to the dentist should feel calm, not scary. He leads the clinic's surgical and implant cases and personally trains every intern who joins the team.",
+    "With over 14 years of practice, Dr. Sanjay founded SS Dental Health on a simple idea: a trip to the dentist should feel calm, not scary. He leads the clinic's surgical and implant cases and personally trains every intern who joins the team.",
 };
 
 export const doctors = [
   {
-    name: "Dr. Sameer Sinha",
+    name: "Dr. Sanjay Kumar",
     role: "Founder & Chief Dental Surgeon",
-    qualifications: "BDS, MDS (Oral & Maxillofacial Surgery)",
+    qualifications: "BDS, Dental Surgeon",
     photo: "https://randomuser.me/api/portraits/men/32.jpg",
   },
   {
@@ -40,7 +40,7 @@ export const doctors = [
 
 export const interns = [
   {
-    name: "Ankita Rao",
+    name: "Shaina Sanjay",
     role: "Dental Intern",
     photo: "https://randomuser.me/api/portraits/women/21.jpg",
   },
@@ -122,21 +122,21 @@ export const offers = [
 
 export const testimonials = [
   {
-    name: "Ritu Agarwal",
+    name: "Azra Jasmine",
     text:
-      "I used to dread the dentist. The team here is so warm and gentle that my kids now ask when we're going back. Genuinely the friendliest clinic we've visited.",
+      "I had a great experience at Ss Dental Health Friendly Clinic near Gyan Ganga Kadamkuan. The customer service was excellent. Booking an appointment was easy and quick. The clinic was very clean and hygienic, which made me feel safe. The staff were caring and friendly, always ready to help. I also received an accurate diagnosis for my dental issue. Overall, it was a wonderful visit!",
     rating: 5,
   },
   {
-    name: "Manoj Kumar",
+    name: "Nitesh Kumar",
     text:
-      "Got my root canal done here — completely painless and the doctor explained every step. The free checkup camp is what brought me in, and I stayed as a regular patient.",
+      "Superb dental clinic. I took my mother there for dental treatment and Dr Sanjay did the excellent job. Dr Sanjay is very friendly and he did the treatment according to my mother requirement.I will recommend everyone to visit here for any dental treatment.",
     rating: 5,
   },
   {
-    name: "Sneha Kapoor",
+    name: "Arun Kumar",
     text:
-      "Booked my appointment online in two minutes and got a confirmation call the same day. Clean clinic, friendly staff, and great results with my braces.",
+      "A very world class infrastructure quite matching the professional excellence and friendly behaviour of Dr. Sanjay. It's not just a friendly clinic....It gives a family waali feeling. Wish you stellar achievements Dr. Sanjay!!!💐",
     rating: 5,
   },
 ];
