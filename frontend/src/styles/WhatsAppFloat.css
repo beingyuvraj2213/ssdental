@@ -1,0 +1,42 @@
+.wa-float {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: var(--shadow-strong);
+  z-index: 200;
+  transition: transform 0.25s ease;
+}
+
+.wa-float:hover {
+  transform: scale(1.08);
+}
+
+.wa-float__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: pulseRing 2.2s infinite;
+}
+
+.wa-float__icon {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 600px) {
+  .wa-float {
+    width: 50px;
+    height: 50px;
+    bottom: 18px;
+    right: 18px;
+    font-size: 1.4rem;
+  }
+}
