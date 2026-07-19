@@ -30,7 +30,7 @@ export default function Footer() {
         <div>
           <h4>Clinic Hours</h4>
           <ul className="footer__hours">
-            <li><span>Mon – Sat</span><span>9:00 AM – 8:00 PM</span></li>
+            <li><span>Mon – Sat</span><span>9:00 AM – 5:00 PM</span></li>
             <li><span>Sunday</span><span>10:00 AM – 2:00 PM</span></li>
           </ul>
         </div>
@@ -38,8 +38,8 @@ export default function Footer() {
         <div>
           <h4>Reach Us</h4>
           <ul className="footer__contact">
-            <li>📍 123 MG Road, Patna, Bihar</li>
-            <li>📞 +91 98765 43210</li>
+            <li>📍 2nd floor, Shasi Niketan, near Gyan Ganga, Kadamkuan, Patna, Bihar 800001</li>
+            <li>📞 +91 93343 31889</li>
             <li>✉️ hello@ssdentalhealth.in</li>
           </ul>
         </div>
