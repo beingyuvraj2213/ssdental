@@ -42,7 +42,7 @@ export default function Contact() {
               <span>🕒</span>
               <div>
                 <strong>Clinic Hours</strong>
-                <p>Mon – Sat: 9 AM – 8 PM<br />Sunday: 10 AM – 2 PM</p>
+                <p>Mon – Sat: 9 AM – 5 PM<br />Sunday: 10 AM – 2 PM</p>
               </div>
             </div>
           </Reveal>

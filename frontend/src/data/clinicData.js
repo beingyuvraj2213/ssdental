@@ -1,14 +1,10 @@
-// Placeholder content — replace with your real clinic details anytime.
-// Photos use randomuser.me placeholder portraits; swap the `photo` field
-// with your own image path (e.g. "/images/dr-sharma.jpg") when ready.
-
 export const owner = {
   name: "Dr. Sanjay Kumar",
   role: "Founder & Chief Dental Surgeon",
   qualifications: "BDS, Dental Surgeon",
   photo: "/images/sanjay.jpeg",
   bio:
-    "With over 14 years of practice, Dr. Sanjay founded SS Dental Health on a simple idea: a trip to the dentist should feel calm, not scary. He leads the clinic's surgical and implant cases and personally trains every intern who joins the team.",
+    "With over 32 years of practice, Dr. Sanjay founded SS Dental Health on a simple idea: a trip to the dentist should feel calm, not scary. He leads the clinic's surgical and implant cases and personally trains every intern who joins the team.",
 };
 
 export const doctors = [
@@ -19,22 +15,16 @@ export const doctors = [
     photo: "/images/sanjay.jpeg",
   },
   {
-    name: "Dr. Priya Verma",
-    role: "Orthodontist",
-    qualifications: "BDS, MDS (Orthodontics)",
-    photo: "https://randomuser.me/api/portraits/women/44.jpg",
+    name: "Dr. Aarushi Anand",
+    role: "Consultant Prosthodontist, General Dentist",
+    qualifications: "BDS, MDS",
+    photo: "/images/aarushi.jpeg",
   },
   {
-    name: "Dr. Rohan Mehta",
-    role: "Pediatric Dentist",
-    qualifications: "BDS, MDS (Pedodontics)",
-    photo: "https://randomuser.me/api/portraits/men/76.jpg",
-  },
-  {
-    name: "Dr. Anjali Kapoor",
-    role: "Cosmetic & Restorative Dentist",
-    qualifications: "BDS, PGDCD",
-    photo: "https://randomuser.me/api/portraits/women/68.jpg",
+    name: "Dr. Shaswat Shrey",
+    role: "Dentist",
+    qualifications: "BDS",
+    photo: "/images/shaswat.jpeg",
   },
 ];
 
@@ -44,16 +34,7 @@ export const interns = [
     role: "Dental Intern",
     photo: "/images/shaina.jpeg",
   },
-  {
-    name: "Vikram Nair",
-    role: "Dental Intern",
-    photo: "https://randomuser.me/api/portraits/men/23.jpg",
-  },
-  {
-    name: "Meera Joshi",
-    role: "Dental Intern",
-    photo: "https://randomuser.me/api/portraits/women/56.jpg",
-  },
+
 ];
 
 export const services = [
