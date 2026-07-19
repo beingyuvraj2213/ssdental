@@ -94,7 +94,7 @@ export default function Appointment() {
 
             <div className="appointment-info__contact">
               <p>Prefer to talk right away?</p>
-              <a href="tel:+919876543210" className="btn btn-ghost btn-block">📞 Call +91 98765 43210</a>
+              <a href="tel:+919334331889" className="btn btn-ghost btn-block">📞 Call +91 93343 31889</a>
             </div>
           </Reveal>
 
