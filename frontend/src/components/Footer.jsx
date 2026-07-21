@@ -69,7 +69,7 @@ export default function Footer() {
 
         <div className="footer__social-links">
           <a
-            href="https://www.instagram.com/your_username"
+            href="https://www.instagram.com/ss_dental_health/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
