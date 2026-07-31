@@ -80,7 +80,7 @@ export default function Appointment() {
                 <span className="appointment-steps__num">2</span>
                 <div>
                   <strong>We get notified instantly</strong>
-                  <p>Our front desk receives your request right away on WhatsApp.</p>
+                  <p>Our front desk receives your request right away on Telegram.</p>
                 </div>
               </li>
               <li>

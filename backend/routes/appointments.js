@@ -1,6 +1,6 @@
 import express from "express";
 import Appointment from "../models/Appointment.js";
-import { sendAppointmentWhatsApp } from "../utils/whatsapp.js";
+import { sendAppointmentTelegram } from "../utils/telegram.js";
 
 const router = express.Router();
 
@@ -16,11 +16,18 @@ router.post("/", async (req, res) => {
       });
     }
 
-    const appointment = await Appointment.create(req.body);
+    let appointment = null;
 
-    // Fire-and-forget WhatsApp alert to the clinic owner
-    sendAppointmentWhatsApp(appointment).catch((e) =>
-      console.error("WhatsApp notify error:", e)
+    try {
+      appointment = await Appointment.create(req.body);
+    } catch (dbErr) {
+      console.warn("MongoDB save failed, continuing without persistence:", dbErr.message);
+      appointment = { ...req.body, _id: "offline" };
+    }
+
+    // Fire-and-forget Telegram alert to the clinic owner
+    sendAppointmentTelegram(appointment).catch((e) =>
+      console.error("Telegram notify error:", e)
     );
 
     return res.status(201).json({
@@ -43,8 +50,13 @@ router.get("/", async (req, res) => {
   if (!key || key !== process.env.ADMIN_KEY) {
     return res.status(401).json({ success: false, message: "Unauthorized" });
   }
-  const appointments = await Appointment.find().sort({ createdAt: -1 });
-  return res.json({ success: true, appointments });
+  try {
+    const appointments = await Appointment.find().sort({ createdAt: -1 });
+    return res.json({ success: true, appointments });
+  } catch (dbErr) {
+    console.warn("MongoDB query failed:", dbErr.message);
+    return res.json({ success: true, appointments: [], message: "MongoDB is unavailable right now." });
+  }
 });
 
 export default router;
