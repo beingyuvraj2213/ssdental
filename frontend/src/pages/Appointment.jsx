@@ -3,8 +3,19 @@ import Reveal from "../components/Reveal";
 import { services } from "../data/clinicData";
 import "../styles/Appointment.css";
 
-const API_BASE_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
-const APPOINTMENTS_URL = API_BASE_URL ? `${API_BASE_URL}/api/appointments` : "/api/appointments";
+const getAppointmentEndpoints = () => {
+  const configuredBase = (import.meta.env.VITE_API_URL || "").trim().replace(/\/$/, "");
+  const candidateBases = [
+    configuredBase,
+    typeof window !== "undefined" ? window.location.origin : "",
+    "https://ss-dental-health-backend.onrender.com",
+    "https://ss-dental-health-api.onrender.com",
+    "https://ss-dental-health-backend.up.railway.app",
+    "https://ss-dental-health-api.up.railway.app",
+  ].filter(Boolean);
+
+  return [...new Set(candidateBases.map((base) => `${base}/api/appointments`))];
+};
 
 const getErrorMessage = (res, fallback) => {
   if (res.status === 404) {
@@ -44,29 +55,41 @@ export default function Appointment() {
     setErrorMsg("");
 
     try {
-      const res = await fetch(APPOINTMENTS_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const endpoints = getAppointmentEndpoints();
+      let lastError = null;
 
-      const text = await res.text();
-      let data = {};
-
-      if (text) {
+      for (const url of endpoints) {
         try {
-          data = JSON.parse(text);
-        } catch {
-          data = { message: text };
+          const res = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(form),
+          });
+
+          const text = await res.text();
+          let data = {};
+
+          if (text) {
+            try {
+              data = JSON.parse(text);
+            } catch {
+              data = { message: text };
+            }
+          }
+
+          if (res.ok && data.success) {
+            setStatus("success");
+            setForm(initialForm);
+            return;
+          }
+
+          lastError = new Error(getErrorMessage(res, data.message || `Could not book appointment via ${url}`));
+        } catch (err) {
+          lastError = err;
         }
       }
 
-      if (!res.ok || !data.success) {
-        throw new Error(getErrorMessage(res, data.message || "Could not book appointment"));
-      }
-
-      setStatus("success");
-      setForm(initialForm);
+      throw lastError || new Error("Something went wrong. Please try again or call us directly.");
     } catch (err) {
       setStatus("error");
       setErrorMsg(err.message || "Something went wrong. Please try again or call us directly.");
