@@ -6,6 +6,18 @@ import "../styles/Appointment.css";
 const API_BASE_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 const APPOINTMENTS_URL = API_BASE_URL ? `${API_BASE_URL}/api/appointments` : "/api/appointments";
 
+const getErrorMessage = (res, fallback) => {
+  if (res.status === 404) {
+    return "The booking service is not available right now. Please try again in a moment.";
+  }
+
+  if (res.status >= 500) {
+    return "The booking service is temporarily unavailable. Please try again later.";
+  }
+
+  return fallback;
+};
+
 const initialForm = {
   name: "",
   phone: "",
@@ -37,10 +49,20 @@ export default function Appointment() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      const data = await res.json();
+
+      const text = await res.text();
+      let data = {};
+
+      if (text) {
+        try {
+          data = JSON.parse(text);
+        } catch {
+          data = { message: text };
+        }
+      }
 
       if (!res.ok || !data.success) {
-        throw new Error(data.message || "Could not book appointment");
+        throw new Error(getErrorMessage(res, data.message || "Could not book appointment"));
       }
 
       setStatus("success");
