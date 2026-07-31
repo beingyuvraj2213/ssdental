@@ -60,12 +60,28 @@ router.get("/", async (req, res) => {
 
 router.get("/test-telegram", async (req, res) => {
   try {
-    const response = await fetch("https://api.telegram.org");
+    const token = process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID;
+
+    const response = await fetch(
+      `https://api.telegram.org/bot${token}/sendMessage`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: "Test message from SS Dental Health backend 🚀",
+        }),
+      }
+    );
+
+    const data = await response.json();
 
     res.json({
       success: true,
-      status: response.status,
-      message: "Telegram reachable",
+      telegramResponse: data,
     });
   } catch (error) {
     res.status(500).json({
