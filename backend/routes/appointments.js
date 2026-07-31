@@ -6,12 +6,19 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
-    const { name, phone, service, preferredDate, preferredTime } = req.body;
+    const {
+      name,
+      phone,
+      service,
+      preferredDate,
+      preferredTime,
+    } = req.body;
 
     if (!name || !phone || !service || !preferredDate || !preferredTime) {
       return res.status(400).json({
         success: false,
-        message: "Please fill in your name, phone, service, and preferred date & time.",
+        message:
+          "Please fill in your name, phone, service, and preferred date & time.",
       });
     }
 
@@ -20,75 +27,79 @@ router.post("/", async (req, res) => {
     try {
       appointment = await Appointment.create(req.body);
     } catch (dbErr) {
-      console.warn("MongoDB save failed, continuing without persistence:", dbErr.message);
-      appointment = { ...req.body, _id: "offline" };
+      console.warn(
+        "MongoDB save failed, continuing without persistence:",
+        dbErr.message
+      );
+
+      appointment = {
+        ...req.body,
+        _id: "offline",
+      };
     }
 
-    // Fire-and-forget Telegram alert to the clinic owner
-    sendAppointmentTelegram(appointment).catch((e) =>
-      console.error("Telegram notify error:", e)
-    );
+    // Wait for Telegram notification before completing request
+    try {
+      await sendAppointmentTelegram(appointment);
+    } catch (telegramErr) {
+      console.error(
+        "Telegram notify error:",
+        telegramErr.message
+      );
+    }
 
     return res.status(201).json({
       success: true,
-      message: "Appointment received! We'll call you soon to confirm.",
+      message:
+        "Appointment received! We'll call you soon to confirm.",
       appointment,
     });
   } catch (err) {
     console.error(err);
+
     return res.status(500).json({
       success: false,
-      message: "Something went wrong while booking your appointment. Please try again.",
+      message:
+        "Something went wrong while booking your appointment. Please try again.",
     });
   }
 });
 
-// GET /api/appointments - clinic admin view (protected with a simple key)
+
+// GET /api/appointments - clinic admin view
+// Protected with admin key
 router.get("/", async (req, res) => {
   const key = req.header("x-admin-key");
+
   if (!key || key !== process.env.ADMIN_KEY) {
-    return res.status(401).json({ success: false, message: "Unauthorized" });
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized",
+    });
   }
+
   try {
-    const appointments = await Appointment.find().sort({ createdAt: -1 });
-    return res.json({ success: true, appointments });
+    const appointments = await Appointment.find().sort({
+      createdAt: -1,
+    });
+
+    return res.json({
+      success: true,
+      appointments,
+    });
   } catch (dbErr) {
-    console.warn("MongoDB query failed:", dbErr.message);
-    return res.json({ success: true, appointments: [], message: "MongoDB is unavailable right now." });
-  }
-});
-
-router.get("/test-telegram", async (req, res) => {
-  try {
-    const token = process.env.TELEGRAM_BOT_TOKEN;
-    const chatId = process.env.TELEGRAM_CHAT_ID;
-
-    const response = await fetch(
-      `https://api.telegram.org/bot${token}/sendMessage`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: "Test message from SS Dental Health backend 🚀",
-        }),
-      }
+    console.warn(
+      "MongoDB query failed:",
+      dbErr.message
     );
 
-    const data = await response.json();
-
-    res.json({
+    return res.json({
       success: true,
-      telegramResponse: data,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message,
+      appointments: [],
+      message: "MongoDB is unavailable right now.",
     });
   }
 });
+
 
 export default router;
