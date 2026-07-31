@@ -58,7 +58,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/api/test-telegram", async (req, res) => {
+router.get("/test-telegram", async (req, res) => {
   try {
     const response = await fetch("https://api.telegram.org");
 
