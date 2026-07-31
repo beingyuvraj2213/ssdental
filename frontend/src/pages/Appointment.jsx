@@ -3,7 +3,7 @@ import Reveal from "../components/Reveal";
 import { services } from "../data/clinicData";
 import "../styles/Appointment.css";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL = "https://ssdentalhealth.vercel.app" || "http://localhost:5000";
 
 const initialForm = {
   name: "",

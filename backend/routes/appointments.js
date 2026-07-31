@@ -4,7 +4,6 @@ import { sendAppointmentTelegram } from "../utils/telegram.js";
 
 const router = express.Router();
 
-// POST /api/appointments - patient books an appointment
 router.post("/", async (req, res) => {
   try {
     const { name, phone, service, preferredDate, preferredTime } = req.body;
