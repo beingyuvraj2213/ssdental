@@ -58,4 +58,21 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/api/test-telegram", async (req, res) => {
+  try {
+    const response = await fetch("https://api.telegram.org");
+
+    res.json({
+      success: true,
+      status: response.status,
+      message: "Telegram reachable",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+});
+
 export default router;
