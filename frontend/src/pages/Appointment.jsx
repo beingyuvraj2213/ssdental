@@ -3,7 +3,8 @@ import Reveal from "../components/Reveal";
 import { services } from "../data/clinicData";
 import "../styles/Appointment.css";
 
-const API_URL = "https://ssdentalhealth.vercel.app" || "http://localhost:5000";
+const API_BASE_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
+const APPOINTMENTS_URL = API_BASE_URL ? `${API_BASE_URL}/api/appointments` : "/api/appointments";
 
 const initialForm = {
   name: "",
@@ -31,7 +32,7 @@ export default function Appointment() {
     setErrorMsg("");
 
     try {
-      const res = await fetch(`${API_URL}/api/appointments`, {
+      const res = await fetch(APPOINTMENTS_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
