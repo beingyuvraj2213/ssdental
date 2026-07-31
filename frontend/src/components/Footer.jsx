@@ -77,14 +77,14 @@ export default function Footer() {
             <i className="fab fa-instagram"></i>
           </a>
 
-          <a
+          {/* <a
             href="https://www.youtube.com/@your_channel"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="YouTube"
+            aria-label="Youtube"
           >
             <i className="fab fa-youtube"></i>
-          </a>
+          </a> */}
 
           <a href="mailto:hello@ssdentalhealth.in" aria-label="Email">
             <i className="fas fa-envelope"></i>
